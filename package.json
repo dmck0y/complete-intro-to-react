@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "A two day workshop on a complete intro to React",
   "main": "index.js",
+  "scripts": {
+    "test": "semistandard",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
   "author": "Brian Holt <btholt@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -23,8 +28,9 @@
     "babel-register": "^6.5.2",
     "chai": "^3.5.0",
     "enzyme": "^2.0.0",
-    "eslint": "^2.2.0",
-    "eslint-config-standard": "^5.1.0",
+    "eslint": "^3.8.0",
+    "eslint-config-semistandard": "^7.0.0",
+    "eslint-config-standard": "^6.0.0",
     "eslint-config-standard-jsx": "^1.1.1",
     "eslint-config-standard-react": "^2.3.0",
     "eslint-loader": "^1.3.0",
