@@ -1,10 +1,15 @@
 const React = require('react');
+const { object } = React.PropTypes;
 
 const Details = React.createClass({
+  propTypes: {
+    params: object.isRequired
+  },
+
   render () {
     return (
       <div className="container">
-        asfasf
+        {console.log(this.props.params)}
       </div>
     );
   }
