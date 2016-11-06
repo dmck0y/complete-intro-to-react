@@ -1,4 +1,5 @@
 const React = require('react');
+const Header = require('./Header');
 const { object } = React.PropTypes;
 
 const Details = React.createClass({
@@ -7,9 +8,20 @@ const Details = React.createClass({
   },
 
   render () {
+    const params = this.props.params || {};
+    const { title, description, year, poster, trailer } = params;
     return (
       <div className="container">
-        {console.log(this.props.params)}
+        <Header />
+        <div className="video-info">
+          <h1 className="video-title">{title}</h1>
+          <h1 className="video-year">({year})</h1>
+          <img className="video-poster" src={`public/img/posters/${poster}`} />
+          <p className="video-description">{description}</p>
+        </div>
+        <div className="video-container">
+          <iframe src={`https://www.youtube-nocookie.com/embed/${trailer}?rel=0&amp;contros=0&amp;showinfo=0`} frameBorder="0" allowFullScreen></iframe>
+        </div>
       </div>
     );
   }
