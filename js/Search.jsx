@@ -1,36 +1,23 @@
 const React = require('react');
 const ShowCard = require('./ShowCard');
 const Header = require('./Header');
-const { object } = React.PropTypes;
+const { connector } = require('./Store');
+const { object, string, arrayOf } = React.PropTypes;
 
 const Search = React.createClass({
   propTypes: {
-    shows: object,
-    route: object
-  },
-
-  getInitialState () {
-    return {
-      searchTerm: ''
-    };
-  },
-
-  handleSearchTermChange (searchTerm) {
-    this.setState({searchTerm: searchTerm});
+    shows: arrayOf(object),
+    searchTerm: string
   },
 
   render () {
     return (
       <div className="container">
-        <Header
-          handleSearchTermChange={this.handleSearchTermChange}
-          searchTerm={this.state.searchTerm}
-          showSearch
-        />
+        <Header showSearch />
         <div className="shows">
-          {this.props.route.shows
+          {this.props.shows
             .reduce((acc, show) => {
-              if (`${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0) {
+              if (`${show.title} ${show.description}`.toUpperCase().indexOf(this.props.searchTerm.toUpperCase()) >= 0) {
                 acc.push(<ShowCard {...show} key={show.imdbID} />);
               }
               return acc;
@@ -41,4 +28,4 @@ const Search = React.createClass({
   }
 });
 
-module.exports = Search;
+module.exports = connector(Search);
